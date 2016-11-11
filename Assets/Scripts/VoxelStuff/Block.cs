@@ -10,16 +10,14 @@ public enum Side {
 }
 
 public abstract class Block {
+    public const int SpriteCount = 8;
+
     public abstract BlockType type {
         get;
     }
 
-    protected static Vector2[] getUvSlot(int x, int y) {
-        return new Vector2[] { new Vector2(x * 0.125f, 0.875f - (y * 0.125f)), new Vector2(x * 0.125f, 1f - (y * 0.125f)), new Vector2(0.125f + (x * 0.125f), 1f - (y * 0.125f)), new Vector2(0.125f + (x * 0.125f), 0.875f - (y * 0.125f)) };
-    }
-
-    public virtual Vector2[] getUvs(Side side) {
-        return new Vector2[] { new Vector2(0, 0), new Vector2(0, 1), new Vector2(1, 1), new Vector2(1, 0) };
+    public virtual Vector2 getUv(Side side) {
+        return new Vector2(0, 7);
     }
 
     public static Block NewBlock(BlockType type) {
@@ -82,14 +80,14 @@ public class GrassBlock : Block {
         }
     }
 
-    public override Vector2[] getUvs(Side side) {
+    public override Vector2 getUv(Side side) {
         switch(side) {
             case Side.TOP:
-                return getUvSlot(0, 0);
+                return new Vector2(0, 7);
             case Side.BOTTOM:
-                return getUvSlot(2, 0);
+                return new Vector2(2, 7);
             default:
-                return getUvSlot(1, 0);
+                return new Vector2(1, 7);
         }
     }
 }
@@ -101,8 +99,8 @@ public class DirtBlock : Block {
         }
     }
 
-    public override Vector2[] getUvs(Side side) {
-        return getUvSlot(2, 0);
+    public override Vector2 getUv(Side side) {
+        return new Vector2(2, 7);
     }
 }
 
@@ -113,8 +111,8 @@ public class StoneBlock : Block {
         }
     }
 
-    public override Vector2[] getUvs(Side side) {
-        return getUvSlot(3, 0);
+    public override Vector2 getUv(Side side) {
+        return new Vector2(3, 7);
     }
 }
 
@@ -125,18 +123,18 @@ public class DebugDirectionalBlock : Block {
         }
     }
 
-    public override Vector2[] getUvs(Side side) {
+    public override Vector2 getUv(Side side) {
         switch(side) {
             default:
-                return getUvSlot(3, 0);
+                return new Vector2(3, 7);
             case Side.NORTH:
-                return getUvSlot(0, 1);
+                return new Vector2(0, 1);
             case Side.SOUTH:
-                return getUvSlot(1, 1);
+                return new Vector2(1, 1);
             case Side.EAST:
-                return getUvSlot(2, 1);
+                return new Vector2(2, 1);
             case Side.WEST:
-                return getUvSlot(3, 1);
+                return new Vector2(3, 1);
         }
     }
 }

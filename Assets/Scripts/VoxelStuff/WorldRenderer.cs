@@ -21,6 +21,7 @@ public class WorldRenderer : MonoBehaviour {
                     cr.chunk = w.GetChunk(x + World.RenderDist, y + World.RenderDist, z + World.RenderDist);
                     chunkRenderers[x + World.RenderDist, y + World.RenderDist, z + World.RenderDist] = cr;
                     cr.GetComponent<MeshRenderer>().material = renderMat;
+                    cr.PrerenderChunk();
                 }
             }
         }

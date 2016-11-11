@@ -10,7 +10,7 @@ public class Chunk {
         for(int x = 0; x < chunkSize; x++) {
             for(int y = 0; y < chunkSize; y++) {
                 for(int z = 0; z < chunkSize; z++) {
-                    data[x, y, z] = Block.NewBlock(BlockType.AIR);
+                    data[x, y, z] = Block.NewBlock(BlockType.STONE);
                 }
             }
         }
