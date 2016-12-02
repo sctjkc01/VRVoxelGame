@@ -26,7 +26,7 @@ public class ThreadedJobPile : MonoBehaviour {
             if(JobsRunning[i] == null && JobsToComplete.Count > 0) {
                 JobsRunning[i] = JobsToComplete[0];
                 JobsToComplete.RemoveAt(0);
-                JobsRunning[i].Start();
+                JobsRunning[i].Start("ThreadedJob " + i);
             }
         }
     }

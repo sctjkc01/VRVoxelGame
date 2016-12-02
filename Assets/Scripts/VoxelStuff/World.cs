@@ -17,7 +17,7 @@ public class World {
         for(int x = 0; x < RenderDist * 2; x++) {
             for(int y = 0; y < RenderDist * 2; y++) {
                 for(int z = 0; z < RenderDist * 2; z++) {
-                    chunks[x, y, z] = new Chunk();
+                    chunks[x, y, z] = new Chunk(this, x, y, z);
                 }
             }
         }
@@ -41,11 +41,11 @@ public class World {
             // request can be out of range, then return a special
             // Unknown block type
             if(cx < 0 || cx > chunks.GetLength(0))
-                return Block.NewBlock(-1);
+                return new NullBlock();
             if(cy < 0 || cy > chunks.GetLength(1))
-                return Block.NewBlock(-1);
+                return new NullBlock();
             if(cz < 0 || cz > chunks.GetLength(2))
-                return Block.NewBlock(-1);
+                return new NullBlock();
             Chunk chunk = chunks[cx, cy, cz];
 
             // this figures out the coordinate of the block relative to

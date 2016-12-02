@@ -38,8 +38,9 @@ public class ThreadedJob : IComparable<ThreadedJob> {
     /// <summary>
     /// Initialization of job, performed on Unity thread
     /// </summary>
-    public virtual void Start() {
+    public virtual void Start(string threadName) {
         m_Thread = new System.Threading.Thread(Run);
+        m_Thread.Name = threadName;
         m_Thread.Start();
     }
     /// <summary>

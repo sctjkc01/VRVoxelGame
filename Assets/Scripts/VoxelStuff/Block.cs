@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 
 public enum BlockType {
-    AIR, GRASS, DIRT, STONE, DEBUGDIRECTIONAL, NULL
+    NULL = -1, AIR = 0, GRASS = 2, DIRT = 1, STONE = 3, DEBUGDIRECTIONAL = 255
 }
 public enum Side {
     TOP, NORTH, EAST, WEST, SOUTH, BOTTOM
@@ -14,6 +14,14 @@ public abstract class Block {
 
     public abstract BlockType type {
         get;
+    }
+
+    public virtual bool Renders {
+        get { return true; }
+    }
+
+    public virtual bool IsOpaque {
+        get { return true; }
     }
 
     public virtual Vector2 getUv(Side side) {
@@ -63,12 +71,36 @@ public class NullBlock : Block {
             return BlockType.NULL;
         }
     }
+
+    public override bool IsOpaque {
+        get {
+            return false;
+        }
+    }
+
+    public override bool Renders {
+        get {
+            return false;
+        }
+    }
 }
 
 public class AirBlock : Block {
     public override BlockType type {
         get {
             return BlockType.AIR;
+        }
+    }
+
+    public override bool IsOpaque {
+        get {
+            return false;
+        }
+    }
+
+    public override bool Renders {
+        get {
+            return false;
         }
     }
 }
